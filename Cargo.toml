@@ -1,0 +1,13 @@
+[package]
+name = "foreman"
+version = "0.1.0"
+authors = ["Alex Burka <aburka@seas.upenn.edu>"]
+
+[dependencies]
+error-chain = "0.8"
+strum = "0.1"
+strum_macros = "0.1"
+
+[replace]
+"strum_macros:0.1.0" = { path = "strum/strum_macros" }
+

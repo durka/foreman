@@ -1,0 +1,21 @@
+[package]
+name = "foo"
+version = "0.1.0"
+authors = ["Alex Burka <aburka@seas.upenn.edu>"]
+
+build = "build.rs"
+links = "whatever"
+
+[features]
+feat = []
+
+[dependencies]
+bar = { path = "../bar" }
+
+[build-dependencies]
+foreman = { path = "../.." }
+assert_matches = "1.1"
+
+[replace]
+"strum_macros:0.1.0" = { path = "../../strum/strum_macros" }
+
