@@ -1,7 +1,15 @@
 [package]
 name = "foreman"
 version = "0.1.0"
-authors = ["Alex Burka <aburka@seas.upenn.edu>"]
+authors = ["Alex Burka <rust@alexburka.com>"]
+description = "Rust build script assistant"
+license = "MIT"
+
+homepage = "https://github.com/durka/foreman"
+repository = "https://github.com/durka/foreman"
+documentation = "https://docs.rs/foreman"
+
+categories = ["development-tools"]
 
 [dependencies]
 error-chain = "0.8"
