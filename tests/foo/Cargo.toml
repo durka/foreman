@@ -17,5 +17,5 @@ foreman = { path = "../.." }
 assert_matches = "1.1"
 
 [replace]
-"strum_macros:0.1.0" = { path = "../../strum/strum_macros" }
+"strum_macros:0.1.0" = { git = "https://github.com/durka/strum", branch = "abs-paths" }
 
