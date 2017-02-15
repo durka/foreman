@@ -14,7 +14,7 @@ macro_rules! input {
             ::std::env::vars_os()
                 .filter_map(|(k, $vp)| match k.into_string() {
                     Ok(ref mut s) if s.starts_with($varname) => {
-                        let $kp = s.split_off($varname.len());
+                        let $kp = &s[$varname.len()..];
                         $code
                     }
 
