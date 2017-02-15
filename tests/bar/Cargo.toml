@@ -9,6 +9,3 @@ links = "foo"
 [build-dependencies]
 foreman = { path = "../.." }
 
-[replace]
-"strum_macros:0.1.0" = { path = "https://github.com/durka/strum", branch = "abs-paths" }
-

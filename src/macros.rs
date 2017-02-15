@@ -41,14 +41,18 @@ macro_rules! input {
 }
 
 macro_rules! output {
-    (@inner [$fnname:ident] () -> ($(, $n:ident : $t:ty)*) ($($strings:expr),*)) => {
+    (@inner [$fnname:ident] ($(,)*) -> ($(, $n:ident : $t:ty)*) ($($strings:expr),*) ($($vars:tt)*)) => {
         pub fn $fnname($($n: $t),*) {
-            println!(concat!($($strings),*), $($n),*);
+            println!(concat!($($strings),*) $($vars)*);
         }
     };
 
-    (@inner $thru:tt ($typ:ty $(, $types:ty)*) -> ($($params:tt)*) ($($strings:tt)*)) => {
-        output!(@inner $thru ($($types),*) -> ($($params)*, n: $typ) ($($strings)*, "={}"));
+    (@inner $thru:tt (<$typ:ty>, $($types:tt)*) -> ($($params:tt)*) ($($strings:tt)*) ($($vars:tt)*)) => {
+        output!(@inner $thru ($($types),*) -> ($($params)*, n: $typ) ($($strings)*, "={}") ($($vars)*, n.display()));
+    };
+
+    (@inner $thru:tt ($typ:ty, $($types:tt)*) -> ($($params:tt)*) ($($strings:tt)*) ($($vars:tt)*)) => {
+        output!(@inner $thru ($($types)*) -> ($($params)*, n: $typ) ($($strings)*, "={}") ($($vars)*, n));
     };
 
     ($fnname:ident, $string:expr, |$($n:ident : $t:ty),*| $code:expr) => {
@@ -57,8 +61,8 @@ macro_rules! output {
         }
     };
 
-    ($fnname:ident, $string:expr, $($types:ty),*) => {
-        output!(@inner [$fnname] ($($types),*) -> () ("cargo:", $string));
+    ($fnname:ident, $string:expr, $($types:tt)*) => {
+        output!(@inner [$fnname] ($($types)*,) -> () ("cargo:", $string) ());
     };
 }
 
