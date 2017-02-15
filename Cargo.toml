@@ -10,6 +10,10 @@ repository = "https://github.com/durka/foreman"
 documentation = "https://docs.rs/foreman"
 
 categories = ["development-tools"]
+keywords = ["cargo", "build script", "environment variable"]
+
+[badges]
+travis-ci = { repository = "durka/foreman" }
 
 [dependencies]
 error-chain = "0.8"
