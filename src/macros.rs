@@ -41,18 +41,23 @@ macro_rules! input {
 }
 
 macro_rules! output {
-    (@inner [$fnname:ident] ($(,)*) -> ($(, $n:ident : $t:ty)*) ($($strings:expr),*) ($($vars:tt)*)) => {
+    (@inner [$fnname:ident] () -> ($(, $n:ident : $t:ty)*) ($($strings:expr),*) ($($vars:tt)*)) => {
         pub fn $fnname($($n: $t),*) {
             println!(concat!($($strings),*) $($vars)*);
         }
     };
 
-    (@inner $thru:tt (<$typ:ty>, $($types:tt)*) -> ($($params:tt)*) ($($strings:tt)*) ($($vars:tt)*)) => {
-        output!(@inner $thru ($($types),*) -> ($($params)*, n: $typ) ($($strings)*, "={}") ($($vars)*, n.display()));
+    (@inner $thru:tt (<$typ:ty> $(,)*) -> ($($params:tt)*) ($($strings:tt)*) ($($vars:tt)*)) => {
+        output!(@inner $thru () -> ($($params)*, n: $typ) ($($strings)*, "{}") ($($vars)*, n.display()));
     };
-
+    (@inner $thru:tt ($typ:ty $(,)*) -> ($($params:tt)*) ($($strings:tt)*) ($($vars:tt)*)) => {
+        output!(@inner $thru () -> ($($params)*, n: $typ) ($($strings)*, "{}") ($($vars)*, n));
+    };
+    (@inner $thru:tt (<$typ:ty>, $($types:tt)*) -> ($($params:tt)*) ($($strings:tt)*) ($($vars:tt)*)) => {
+        output!(@inner $thru ($($types),*) -> ($($params)*, n: $typ) ($($strings)*, "{}", "=") ($($vars)*, n.display()));
+    };
     (@inner $thru:tt ($typ:ty, $($types:tt)*) -> ($($params:tt)*) ($($strings:tt)*) ($($vars:tt)*)) => {
-        output!(@inner $thru ($($types)*) -> ($($params)*, n: $typ) ($($strings)*, "={}") ($($vars)*, n));
+        output!(@inner $thru ($($types)*) -> ($($params)*, n: $typ) ($($strings)*, "{}", "=") ($($vars)*, n));
     };
 
     ($fnname:ident, $string:expr, |$($n:ident : $t:ty),*| $code:expr) => {
@@ -61,8 +66,12 @@ macro_rules! output {
         }
     };
 
+    ($fnname:ident, None, $($types:tt)*) => {
+        output!(@inner [$fnname] ($($types)*,) -> () ("cargo:") ());
+    };
+
     ($fnname:ident, $string:expr, $($types:tt)*) => {
-        output!(@inner [$fnname] ($($types)*,) -> () ("cargo:", $string) ());
+        output!(@inner [$fnname] ($($types)*,) -> () ("cargo:", $string, "=") ());
     };
 }
 
