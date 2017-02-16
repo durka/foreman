@@ -1,6 +1,6 @@
 [package]
 name = "foreman"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["Alex Burka <rust@alexburka.com>"]
 description = "Rust build script assistant"
 license = "MIT"
@@ -10,7 +10,7 @@ repository = "https://github.com/durka/foreman"
 documentation = "https://docs.rs/foreman"
 
 categories = ["development-tools"]
-keywords = ["cargo", "build script", "environment variable"]
+keywords = ["cargo", "build", "environment"]
 
 [badges]
 travis-ci = { repository = "durka/foreman" }
