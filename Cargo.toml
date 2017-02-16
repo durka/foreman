@@ -1,6 +1,6 @@
 [package]
 name = "foreman"
-version = "0.1.2"
+version = "0.2.0"
 authors = ["Alex Burka <rust@alexburka.com>"]
 description = "Rust build script assistant"
 license = "MIT"
@@ -17,6 +17,6 @@ travis-ci = { repository = "durka/foreman" }
 
 [dependencies]
 error-chain = "0.8"
-strum = "0.1"
-strum_macros = { git = "https://github.com/durka/strum", branch = "abs-paths" }
+strum = "0.2"
+strum_macros = "0.2"
 
