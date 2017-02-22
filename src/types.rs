@@ -40,16 +40,6 @@ pub enum SearchKind {
     All
 }
 
-#[derive(PartialEq, Eq, Debug, EnumMessage)]
-pub enum FlagKind {
-    #[strum(message="l")]
-    Lib,
-
-    #[strum(message="L")]
-    Dir
-}
-
 message_display!(LibKind);
 message_display!(SearchKind);
-message_display!(FlagKind);
 

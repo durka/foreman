@@ -21,7 +21,6 @@ fn main() {
 
     link_lib(LibKind::Dylib, Path::new("whatever"));
     link_search(SearchKind::All, Path::new("wherever"));
-    flag(FlagKind::Lib, Path::new("however"));
     cfg("whoever");
     rerun_if_changed(Path::new("whichever"));
     warning("success");

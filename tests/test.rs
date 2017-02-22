@@ -37,7 +37,6 @@ fn test() {
     assert_eq!(build_script_output.trim(), r#"
 cargo:rustc-link-lib=dylib=whatever
 cargo:rustc-link-search=all=wherever
-cargo:rustc-flags=-l however
 cargo:rustc-cfg=whoever
 cargo:rerun-if-changed=whichever
 cargo:warning=success
