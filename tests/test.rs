@@ -7,11 +7,10 @@ use std::process::Command;
 #[test]
 fn test() {
     // clean environment
-    assert!(Command::new("cargo")
-                .arg("clean")
-                .current_dir(Path::new("tests").join("foo"))
-                .status().expect("failed to execute cargo clean")
-                .success());
+    fs::remove_file(Path::new("tests").join("foo").join("Cargo.lock"))
+        .expect("failed to delete tests/foo/Cargo.lock");
+    fs::remove_dir_all(Path::new("tests").join("foo").join("target"))
+        .expect("failed to delete tests/foo/target/");
 
     // build test crate (tests inputs and meta())
     assert!(Command::new("cargo")
