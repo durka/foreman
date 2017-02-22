@@ -7,8 +7,8 @@ use std::process::Command;
 #[test]
 fn test() {
     // clean environment
-    fs::remove_file(Path::new("tests").join("foo").join("Cargo.lock")).expect("failed to delete tests/foo/Cargo.lock");
-    fs::remove_dir_all(Path::new("tests").join("foo").join("target")).expect("failed to delete tests/foo/target/");
+    let _ = fs::remove_file(Path::new("tests").join("foo").join("Cargo.lock"));
+    let _ = fs::remove_dir_all(Path::new("tests").join("foo").join("target"));
 
     // build test crate (tests inputs and meta())
     assert!(Command::new("cargo")
