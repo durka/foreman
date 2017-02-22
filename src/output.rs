@@ -10,8 +10,24 @@ output!(/// Pass a library search path to the compiler as a `-L` flag
 output!(/// Pass a cfg flag to the compiler
     fn cfg, "rustc-cfg", &str);
 
-output!(/// Specify a file or directory whose timestamp will trigger a rerun of the build script
+output!(/// Specify a file or directory whose timestamp will trigger a rerun of the build script (note: to recursively track a directory, see `rerun_walk`)
     fn rerun, "rerun-if-changed", <&Path>);
+
+/// Recursively walk a directory, calling the provided callback for each file and directory, and if
+/// it returns true, tell cargo to trigger a rerun of the build script. Hidden files are included,
+/// but errors are ignored (so directories that you do not have permission to access will be
+/// silently skipped).
+pub fn rerun_walk<CB: FnMut(&Path) -> bool>(p: &Path, mut callback: CB) {
+    use walkdir::WalkDir;
+
+    for entry in WalkDir::new(p) {
+        if let Ok(entry) = entry {
+            if callback(entry.path()) {
+                rerun(entry.path());
+            }
+        }
+    }
+}
 
 output!(/// Emit a warning
     fn warning, "warning", &str);

@@ -12,6 +12,7 @@
 #[macro_use] extern crate error_chain;
 #[macro_use] extern crate strum_macros;
 extern crate strum;
+extern crate walkdir;
 
 use std::{env, num, str};
 

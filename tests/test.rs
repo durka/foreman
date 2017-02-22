@@ -39,6 +39,8 @@ cargo:rustc-link-lib=dylib=whatever
 cargo:rustc-link-search=all=wherever
 cargo:rustc-cfg=whoever
 cargo:rerun-if-changed=whichever
+cargo:rerun-if-changed=src
+cargo:rerun-if-changed=src/lib.rs
 cargo:warning=success
     "#.trim());
 }

@@ -19,4 +19,5 @@ travis-ci = { repository = "durka/foreman" }
 error-chain = "0.9"
 strum = "0.2"
 strum_macros = "0.2"
+walkdir = "1.0"
 
