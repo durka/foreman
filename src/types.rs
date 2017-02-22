@@ -10,7 +10,7 @@ pub enum Profile {
 
     /// Release mode
     #[strum(serialize="release")]
-    Release
+    Release,
 }
 
 /// Library kind for [`rustc-link-lib`](http://doc.crates.io/build-script.html#outputs-of-the-build-script)
@@ -26,7 +26,7 @@ pub enum LibKind {
 
     /// Framework (macOS)
     #[strum(message="framework")]
-    Framework
+    Framework,
 }
 
 /// Search strategy for [`rustc-link-search`](http://doc.crates.io/build-script.html#outputs-of-the-build-script)
@@ -50,9 +50,8 @@ pub enum SearchKind {
 
     /// Search everywhere
     #[strum(message="all")]
-    All
+    All,
 }
 
 message_display!(LibKind);
 message_display!(SearchKind);
-

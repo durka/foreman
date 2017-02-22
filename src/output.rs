@@ -10,7 +10,8 @@ output!(/// Pass a library search path to the compiler as a `-L` flag
 output!(/// Pass a cfg flag to the compiler
     fn cfg, "rustc-cfg", &str);
 
-output!(/// Specify a file or directory whose timestamp will trigger a rerun of the build script (note: to recursively track a directory, see `rerun_walk`)
+output!(/// Specify a file or directory whose timestamp will trigger a rerun of the build script
+        /// (note: to recursively track a directory, see `rerun_walk`)
     fn rerun, "rerun-if-changed", <&Path>);
 
 /// Recursively walk a directory, calling the provided callback for each file and directory, and if
@@ -32,6 +33,6 @@ pub fn rerun_walk<CB: FnMut(&Path) -> bool>(p: &Path, mut callback: CB) {
 output!(/// Emit a warning
     fn warning, "warning", &str);
 
-output!(/// Pass metadata to dependent crates (see [cargo docs](http://doc.crates.io/build-script.html#the-links-manifest-key))
+output!(/// Pass metadata to dependent crates
+        /// (see [cargo docs](http://doc.crates.io/build-script.html#the-links-manifest-key))
     fn meta, None, &str, &str);
-

@@ -25,7 +25,8 @@ input!(/// Get the list of activated features (if any)
     fn features -> Vec<String>, "CARGO_FEATURE_",
        |(feat, _)| {
            Some(Ok(feat.to_lowercase()))
-               // FIXME feature name collisions with _ and - (parse Cargo.toml to find out?) cf. rust-lang/cargo#3072
+               // FIXME feature name collisions with _ and - (parse Cargo.toml to find out?)
+               // cf. rust-lang/cargo#3072
        });
 
 input!(/// Get the output directory (write generated files here)
@@ -49,13 +50,17 @@ input!(/// Get the debug mode of the current compilation
 input!(/// Get the compilation profile
     fn profile -> Profile, "PROFILE", parse ParseProfile);
 
-input!(/// Get a list of all the metadata passed along from dependency build scripts (see [cargo docs](http://doc.crates.io/build-script.html#the-links-manifest-key))
+input!(/// Get a list of all the metadata passed along from dependency build scripts
+       /// (see [cargo docs](http://doc.crates.io/build-script.html#the-links-manifest-key))
     fn dep_metadata -> HashMap<String, HashMap<String, String>>, "DEP_",
        |(dep_key, value)| {
            match value.into_string() {
                Ok(value) => {
                    let mut dep_key = dep_key.splitn(2, '_');
-                   Some(Ok(Three(dep_key.next().unwrap().to_lowercase(), dep_key.next().unwrap().to_lowercase(), value)))
+                   Some(Ok(Three(
+                               dep_key.next().unwrap().to_lowercase(),
+                               dep_key.next().unwrap().to_lowercase(),
+                               value)))
                        // FIXME - converted to _ (parse Cargo.toml to find out?)
                }
 
@@ -68,5 +73,3 @@ input!(/// Get the path to the compiler that Cargo is using
 
 input!(/// Get the path to the documentation generator that Cargo is using
     fn rustdoc -> PathBuf, "RUSTDOC", |s| Ok(PathBuf::from(s)));
-
-

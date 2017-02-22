@@ -1,6 +1,7 @@
 //! `foreman`: Rust build script assistant
-//! 
-//! "Don't pick up those environment variables yourself. Just tell the foreman what to do with the cargo."
+//!
+//! "Don't pick up those environment variables yourself.
+//!  Just tell the foreman what to do with the cargo."
 //!
 //! This crate contains utilities for build scripts to talk to Cargo, abstracting away the input
 //! (via special environment variables that Cargo sets) and output (via special patterns that the
@@ -9,14 +10,17 @@
 #![deny(warnings)]
 #![deny(missing_docs)]
 
-#[macro_use] extern crate error_chain;
-#[macro_use] extern crate strum_macros;
+#[macro_use]
+extern crate error_chain;
+#[macro_use]
+extern crate strum_macros;
 extern crate strum;
 extern crate walkdir;
 
 use std::{env, num, str};
 
-#[macro_use] mod macros;
+#[macro_use]
+mod macros;
 
 error_chain! {
     foreign_links {
@@ -46,4 +50,3 @@ pub use input::*;
 
 mod output;
 pub use output::*;
-
