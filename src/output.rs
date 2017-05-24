@@ -10,6 +10,9 @@ output!(/// Pass a library search path to the compiler as a `-L` flag
 output!(/// Pass a cfg flag to the compiler
     fn cfg, "rustc-cfg", &str);
 
+output!(/// Set a variable in the compiler's environment
+    fn env_var, "rustc-env", &str, &str);
+
 output!(/// Specify a file or directory whose timestamp will trigger a rerun of the build script
         /// (note: to recursively track a directory, see `rerun_walk`)
     fn rerun, "rerun-if-changed", <&Path>);

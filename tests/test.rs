@@ -39,6 +39,7 @@ fn test() {
 cargo:rustc-link-lib=dylib=whatever
 cargo:rustc-link-search=all=wherever
 cargo:rustc-cfg=whoever
+cargo:rustc-env=FOO=foo
 cargo:rerun-if-changed=whichever
 cargo:rerun-if-changed=src
 cargo:rerun-if-changed=src/lib.rs

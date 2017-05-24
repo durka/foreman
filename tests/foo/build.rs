@@ -22,6 +22,7 @@ fn main() {
     link_lib(LibKind::Dylib, Path::new("whatever"));
     link_search(SearchKind::All, Path::new("wherever"));
     cfg("whoever");
+    env_var("FOO", "foo");
     rerun(Path::new("whichever"));
     rerun_walk(Path::new("src"), |_| true);
     warning("success");
