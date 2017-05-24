@@ -16,8 +16,8 @@ keywords = ["cargo", "build", "environment"]
 travis-ci = { repository = "durka/foreman" }
 
 [dependencies]
-error-chain = "0.9"
-strum = "0.2"
-strum_macros = "0.2"
+error-chain = "0.10"
+strum = "0.6"
+strum_macros = "0.6"
 walkdir = "1.0"
 
