@@ -1,6 +1,6 @@
 [package]
 name = "foreman"
-version = "0.3.0"
+version = "0.3.1"
 authors = ["Alex Burka <rust@alexburka.com>"]
 description = "Rust build script assistant"
 license = "MIT"
