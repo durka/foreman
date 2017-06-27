@@ -25,6 +25,7 @@ fn main() {
     env_var("FOO", "foo");
     rerun(Path::new("whichever"));
     rerun_walk(Path::new("src"), |_| true);
+    rerun_env("FOO");
     warning("success");
 }
 

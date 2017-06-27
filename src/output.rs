@@ -17,6 +17,9 @@ output!(/// Specify a file or directory whose timestamp will trigger a rerun of 
         /// (note: to recursively track a directory, see `rerun_walk`)
     fn rerun, "rerun-if-changed", <&Path>);
 
+output!(/// Specify environment variables where new values will trigger a rerun of the build script
+    fn rerun_env, "rerun-if-env-changed", &str);
+
 /// Recursively walk a directory, calling the provided callback for each file and directory, and if
 /// it returns true, tell cargo to trigger a rerun of the build script. Hidden files are included,
 /// but errors are ignored (so directories that you do not have permission to access will be

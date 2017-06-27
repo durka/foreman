@@ -43,6 +43,7 @@ cargo:rustc-env=FOO=foo
 cargo:rerun-if-changed=whichever
 cargo:rerun-if-changed=src
 cargo:rerun-if-changed=src/lib.rs
+cargo:rerun-if-env-changed=FOO
 cargo:warning=success
     "#
                    .trim());
