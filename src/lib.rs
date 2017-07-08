@@ -7,7 +7,6 @@
 //! (via special environment variables that Cargo sets) and output (via special patterns that the
 //! build script prints to stdout).
 
-#![deny(warnings)]
 #![deny(missing_docs)]
 
 #[macro_use]
