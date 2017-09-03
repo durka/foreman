@@ -19,12 +19,12 @@ fn main() {
     assert!(        rustc()           .is_ok());
     assert!(        rustdoc()         .is_ok());
 
-    link_lib(LibKind::Dylib, Path::new("whatever"));
+    link_lib(LibKind::Dylib, "whatever");
     link_search(SearchKind::All, Path::new("wherever"));
     cfg("whoever");
     env_var("FOO", "foo");
-    rerun(Path::new("whichever"));
-    rerun_walk(Path::new("src"), |_| true);
+    rerun("whichever");
+    rerun_walk("src", |_| true);
     rerun_env("FOO");
     warning("success");
 }
