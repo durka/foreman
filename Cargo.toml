@@ -1,6 +1,6 @@
 [package]
 name = "foreman"
-version = "0.4.0"
+version = "0.5.0"
 authors = ["Alex Burka <rust@alexburka.com>"]
 description = "Rust build script assistant"
 license = "MIT"
@@ -16,7 +16,8 @@ keywords = ["cargo", "build", "environment"]
 travis-ci = { repository = "durka/foreman" }
 
 [dependencies]
-error-chain = "0.11.0-rc.2"
+failure = { git = "https://github.com/withoutboats/failure" }
+derive-fail = { git = "https://github.com/withoutboats/derive-fail" }
 strum = "0.8"
 strum_macros = "0.8"
 walkdir = "1.0"

@@ -9,37 +9,38 @@
 
 #![deny(missing_docs)]
 
-#[macro_use]
-extern crate error_chain;
-#[macro_use]
-extern crate strum_macros;
+#[macro_use] extern crate derive_fail;
+#[macro_use] extern crate strum_macros;
+extern crate failure;
 extern crate strum;
 extern crate walkdir;
 
-use std::{env, num, str};
+use failure::Context;
 
-#[macro_use]
-mod macros;
+#[macro_use] mod macros;
 
-error_chain! {
-    foreign_links {
-        Env(env::VarError)
-        /// A required environment variable did not exist or was not valid UTF-8
-        ;
+/// Errors that can be produced by fallible functions
+#[derive(Debug, Fail)]
+pub enum ErrorKind {
+    /// Env var missing or not UTF-8
+    #[fail(display = "{}", _0)]
+    Env(&'static str),
 
-        ParseInt(num::ParseIntError)
-        /// An environment variable could not be parsed as an integer
-        ;
+    /// Could not parse int
+    #[fail(display = "{} is not an integer", _0)]
+    ParseInt(String),
 
-        ParseBool(str::ParseBoolError)
-        /// An environment variable could not be parsed as a boolean
-        ;
+    /// Could not parse bool
+    #[fail(display = "{} is not a boolean", _0)]
+    ParseBool(String),
 
-        ParseProfile(strum::ParseError)
-        /// An environment variable could not be parsed as a compilation profile
-        ;
-    }
+    /// Could not parse compilation profile (see [Profile](enum.Profile.html))
+    #[fail(display = "{} is not a boolean", _0)]
+    ParseProfile(String),
 }
+
+/// Result alias for fallible functions
+pub type Result<T> = std::result::Result<T, Context<ErrorKind>>;
 
 mod types;
 pub use types::*;

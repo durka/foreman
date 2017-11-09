@@ -32,7 +32,7 @@ macro_rules! inputs {
     ($(#[$attr:meta])* fn $fnname:ident -> $fnret:ty, $varname:expr, |$param:tt| $code:expr; $($rest:tt)*) => {
         $(#[$attr])*
         pub fn $fnname() -> $crate::Result<$fnret> {
-            let $param = ::std::env::var($varname)?;
+            let $param = ::failure::ResultExt::context(::std::env::var($varname), $crate::ErrorKind::Env($varname))?;
             $code
         }
 
@@ -43,8 +43,7 @@ macro_rules! inputs {
         inputs! {
             $(#[$attr])*
             fn $fnname -> $fnret, $varname,
-               |s| s.parse().map_err(|e| $crate::Error::from_kind($crate::ErrorKind::$kind(e)));
-                    // FIXME weird error-chain incantation (is $kind necessary?)
+               |s| ::failure::ResultExt::with_context(s.parse::<$fnret>(), |_| $crate::ErrorKind::$kind(s.to_owned()));
             
             $($rest)*
         }
